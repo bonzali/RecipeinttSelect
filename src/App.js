@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import React from 'react'
+import CustomSelect from './RecipientSelect/customSelect'
+import BaseSelect from './RecipientSelect/BaseSelect'
+import { Button } from 'antd'
 
 function App() {
+  //list of phone numbers
+  const [baseRecipients, setBaseRecipients] = React.useState([])
+  const [customRecipients, setCustomRecipients] = React.useState([])
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className="RecipientsBox">
+      <div>
+        <h1>Base Component</h1>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Total Recipients : {baseRecipients.length}{' '}
+          <Button onClick={() => setBaseRecipients([])}>Clear all</Button>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <BaseSelect
+          recipients={baseRecipients}
+          setRecipients={setBaseRecipients}
+        />
+      </div>
+      <div>
+        <h1>Custom Component</h1>
+        <p>
+          Total Recipients : {customRecipients.length}{' '}
+          <Button onClick={() => setCustomRecipients([])}>Clear all</Button>
+        </p>
+        <CustomSelect
+          recipients={customRecipients}
+          setRecipients={setCustomRecipients}
+        />
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
